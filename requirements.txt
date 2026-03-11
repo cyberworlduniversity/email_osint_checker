@@ -1,0 +1,10 @@
+# Email OSINT Checker — Requirements
+# All core features use Python standard library only (no pip install needed)
+# Optional: install these for enhanced output
+
+# Standard library used:
+# - re, sys, json, time, hashlib, argparse, urllib (all built-in)
+
+# Optional enhancements (uncomment to use):
+# colorama>=0.4.6       # Windows color support
+# requests>=2.31.0      # Alternative to urllib (more robust)
