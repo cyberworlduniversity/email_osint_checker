@@ -69,11 +69,17 @@ python email_osint_checker.py target@example.com
 ```
 
 ### With API Keys (Recommended)
+
+Set keys as environment variables instead of command-line arguments, which can be exposed in shell history and process listings:
+
 ```bash
-python email_osint_checker.py target@example.com \
-  --hibp-key YOUR_HIBP_KEY \
-  --leakcheck-key YOUR_LEAKCHECK_KEY
+export HIBP_API_KEY="your_hibp_key"
+export DEHASHED_API_KEY="your_dehashed_key"
+export LEAKCHECK_API_KEY="your_leakcheck_key"
+python email_osint_checker.py target@example.com --dehashed-user account@example.com
 ```
+
+Do not commit these values to source control.
 
 ### Batch Mode (Multiple Emails)
 ```bash
@@ -88,8 +94,7 @@ python email_osint_checker.py target@example.com --output report.json
 
 ### Full Options
 ```
-usage: email_osint_checker.py [-h] [--hibp-key KEY] [--dehashed-key KEY]
-                               [--dehashed-user EMAIL] [--leakcheck-key KEY]
+usage: email_osint_checker.py [-h] [--dehashed-user EMAIL]
                                [--output FILE] [--no-banner] [--batch FILE]
                                [email]
 
@@ -98,13 +103,12 @@ positional arguments:
 
 optional arguments:
   -h, --help            Show this help message
-  --hibp-key KEY        HaveIBeenPwned v3 API key
-  --dehashed-key KEY    DeHashed API key
   --dehashed-user EMAIL Your DeHashed account email
-  --leakcheck-key KEY   LeakCheck.io API key
   --output FILE         Save JSON report to this file
   --no-banner           Suppress ASCII banner
   --batch FILE          Check multiple emails from a text file
+
+API keys are read from HIBP_API_KEY, DEHASHED_API_KEY, and LEAKCHECK_API_KEY.
 ```
 
 ---
