@@ -73,9 +73,10 @@ python email_osint_checker.py target@example.com
 Set keys as environment variables instead of command-line arguments, which can be exposed in shell history and process listings:
 
 ```bash
-export HIBP_API_KEY="your_hibp_key"
-export DEHASHED_API_KEY="your_dehashed_key"
-export LEAKCHECK_API_KEY="your_leakcheck_key"
+read -rsp "HIBP API key: " HIBP_API_KEY; echo
+read -rsp "DeHashed API key: " DEHASHED_API_KEY; echo
+read -rsp "LeakCheck API key: " LEAKCHECK_API_KEY; echo
+export HIBP_API_KEY DEHASHED_API_KEY LEAKCHECK_API_KEY
 python email_osint_checker.py target@example.com --dehashed-user account@example.com
 ```
 
