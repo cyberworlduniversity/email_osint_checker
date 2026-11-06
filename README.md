@@ -1,5 +1,15 @@
 # 📧 Email OSINT Checker — Breach Detection Tool
 
+
+## Get this repository
+
+Clone the current project (this repository's canonical GitHub URL), then follow the installation and usage steps below.
+
+```bash
+git clone https://github.com/cyberworlduniversity/email_osint_checker.git
+cd email_osint_checker
+```
+
 > **Author:** [hemanathan115](https://github.com/hemanathan115)  
 > **Category:** OSINT / Cybersecurity Toolkit  
 > **Tool #10** in the OSINT Kit
@@ -36,8 +46,8 @@
 
 ```bash
 # Clone the repo
-git clone https://github.com/hemanathan115/osint-toolkit.git
-cd osint-toolkit/10-email-osint-checker
+git clone https://github.com/cyberworlduniversity/email_osint_checker.git
+cd email_osint_checker
 
 # Make executable (Linux/macOS)
 chmod +x email_osint_checker.py
