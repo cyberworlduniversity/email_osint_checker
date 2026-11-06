@@ -12,6 +12,7 @@ import json
 import time
 import hashlib
 import argparse
+import os
 import urllib.request
 import urllib.error
 from datetime import datetime
@@ -167,7 +168,7 @@ def check_dehashed(email: str, api_key: str = None, username: str = None) -> dic
                     "id": e.get("id"),
                     "database_name": e.get("database_name"),
                     "username": e.get("username"),
-                    "hashed_password": e.get("hashed_password"),
+                    "password_hash_present": bool(e.get("hashed_password")),
                     "obtained_from": e.get("obtained_from")
                 }
                 for e in entries[:5]
@@ -406,22 +407,10 @@ def main():
     parser.add_argument("email",
         nargs="?",
         help="Target email address to check")
-    parser.add_argument("--hibp-key",
-        default=None,
-        metavar="KEY",
-        help="HaveIBeenPwned API key")
-    parser.add_argument("--dehashed-key",
-        default=None,
-        metavar="KEY",
-        help="DeHashed API key")
     parser.add_argument("--dehashed-user",
         default=None,
         metavar="EMAIL",
         help="Your DeHashed account email")
-    parser.add_argument("--leakcheck-key",
-        default=None,
-        metavar="KEY",
-        help="LeakCheck.io API key")
     parser.add_argument("--output",
         default=None,
         metavar="FILE",
@@ -477,17 +466,17 @@ def main():
 
         # 3. HIBP
         print_section("HaveIBeenPwned (HIBP)")
-        hibp_result = check_hibp(email, api_key=args.hibp_key)
+        hibp_result = check_hibp(email, api_key=os.environ.get('HIBP_API_KEY'))
         print_result(hibp_result)
 
         # 4. DeHashed
         print_section("DeHashed")
-        dh_result = check_dehashed(email, api_key=args.dehashed_key, username=args.dehashed_user)
+        dh_result = check_dehashed(email, api_key=os.environ.get('DEHASHED_API_KEY'), username=args.dehashed_user)
         print_result(dh_result)
 
         # 5. LeakCheck
         print_section("LeakCheck.io")
-        lc_result = check_leakcheck(email, api_key=args.leakcheck_key)
+        lc_result = check_leakcheck(email, api_key=os.environ.get('LEAKCHECK_API_KEY'))
         print_result(lc_result)
 
         # Save report
